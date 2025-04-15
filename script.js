@@ -44,11 +44,16 @@ document.addEventListener('DOMContentLoaded', () => {
   buttons.forEach(btn => {
     btn.style.position = 'absolute';
     const btnRect = btn.getBoundingClientRect();
+    // Fijar dimensiones para evitar reajuste (por contenido, etc.)
+    btn.style.width = btnRect.width + 'px';
+    btn.style.height = btnRect.height + 'px';
+
     // Posición aleatoria dentro del contenedor
     const initX = Math.random() * (containerRect.width - btnRect.width);
     const initY = Math.random() * (containerRect.height - btnRect.height);
     btn.style.left = initX + 'px';
     btn.style.top = initY + 'px';
+
     // Velocidades aleatorias (más lentas, usando factor 0.5)
     btn.vx = (Math.random() * 2 - 1) * 0.5; // valor entre -0.5 y 0.5
     btn.vy = (Math.random() * 2 - 1) * 0.5;
@@ -63,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const width = btn.offsetWidth;
       const height = btn.offsetHeight;
 
-      // Actualizar posición según velocidad
+      // Actualizar posición según la velocidad
       x += btn.vx;
       y += btn.vy;
 
@@ -77,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
         y = y <= 0 ? 0 : containerRect.height - height;
       }
 
-      // Detección de colisiones entre botones
+      // --- Detección y resolución de colisiones entre botones ---
       buttons.forEach((other, j) => {
         if (index === j) return;
         let ox = parseFloat(other.style.left);
@@ -85,35 +90,38 @@ document.addEventListener('DOMContentLoaded', () => {
         const oWidth = other.offsetWidth;
         const oHeight = other.offsetHeight;
 
-        // Si se sobreponen
+        // Verificar si se sobreponen
         if (
           x < ox + oWidth &&
           x + width > ox &&
           y < oy + oHeight &&
           y + height > oy
         ) {
-          // Calcular centros para determinar la dirección de la colisión
+          // Calcular el solapamiento en cada eje
+          const overlapX = Math.min(x + width, ox + oWidth) - Math.max(x, ox);
+          const overlapY = Math.min(y + height, oy + oHeight) - Math.max(y, oy);
+          
+          // Calcular los centros para determinar la dirección
           const btnCenterX = x + width / 2;
           const btnCenterY = y + height / 2;
           const otherCenterX = ox + oWidth / 2;
           const otherCenterY = oy + oHeight / 2;
-          const diffX = btnCenterX - otherCenterX;
-          const diffY = btnCenterY - otherCenterY;
           
-          // Resolver la colisión por el eje con mayor diferencia
-          if (Math.abs(diffX) > Math.abs(diffY)) {
-            if (diffX > 0) {
-              // El botón está a la derecha del otro
-              x = ox + oWidth;
+          // Resolver la colisión usando el eje con menor solapamiento
+          if (overlapX < overlapY) {
+            // Colisión horizontal
+            if (btnCenterX > otherCenterX) {
+              x += overlapX;
             } else {
-              x = ox - width;
+              x -= overlapX;
             }
             btn.vx = -btn.vx;
           } else {
-            if (diffY > 0) {
-              y = oy + oHeight;
+            // Colisión vertical
+            if (btnCenterY > otherCenterY) {
+              y += overlapY;
             } else {
-              y = oy - height;
+              y -= overlapY;
             }
             btn.vy = -btn.vy;
           }
