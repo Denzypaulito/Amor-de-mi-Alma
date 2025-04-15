@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Razones por las que Eres Excesivamente Hermosa</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Great+Vibes&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Razones por las que Eres Excesivamente Hermosa</h1>
+    </header>
+    <!-- Grid de botones -->
+    <section class="grid">
+      <div class="grid-item">
+         <button class="modal-trigger" 
+            data-title="Tu dulce voz" 
+            data-content="Amo tu dulce voz y cómo tarareas las canciones. Esa melodía me llena de alegría y calma.">
+            1. Tu dulce voz
+         </button>
+      </div>
+      <div class="grid-item">
+         <button class="modal-trigger" 
+            data-title="Tu mirada intensa" 
+            data-content="Tu mirada tan intensa y esos ojos profundos, semejantes al mar en una noche serena, me cautivan.">
+            2. Tu mirada intensa
+         </button>
+      </div>
+      <div class="grid-item">
+         <button class="modal-trigger" 
+            data-title="Tu carácter único" 
+            data-content="Me inspira tu carácter fuerte y seductor; has cambiado mi forma de ver la vida, haciéndome ser mejor.">
+            3. Tu carácter único
+         </button>
+      </div>
+      <div class="grid-item">
+         <button class="modal-trigger" 
+            data-title="Tu cuerpo seductor" 
+            data-content="Ese cuerpo tan seductor me derrite y me recuerda lo perfecta que eres en cada detalle.">
+            4. Tu cuerpo seductor
+         </button>
+      </div>
+      <div class="grid-item">
+         <button class="modal-trigger" 
+            data-title="Tus facciones encantadoras" 
+            data-content="Amo cada parte de tu rostro: tus cejas, pestañas, orejas, esa nariz tan linda y tus labios que me enamoran.">
+            5. Tus facciones encantadoras
+         </button>
+      </div>
+      <div class="grid-item">
+         <button class="modal-trigger" 
+            data-title="Tu estilo y forma de vestir" 
+            data-content="Tu manera de vestir y el cabello, ya sea lacio u ondulado, resaltan tu esencia y te hacen lucir única.">
+            6. Tu estilo y forma de vestir
+         </button>
+      </div>
+      <div class="grid-item">
+         <button class="modal-trigger" 
+            data-title="Tu forma de emocionarte" 
+            data-content="Me fascina cómo te emocionas, ya sea al reír o gritar; esa energía tuya es contagiosa y especial.">
+            7. Tu forma de emocionarte
+         </button>
+      </div>
+      <div class="grid-item">
+         <button class="modal-trigger" 
+            data-title="El brillo de tu sonrisa" 
+            data-content="Tu sonrisa ilumina mi mundo y con cada destello me recuerda lo afortunado que soy de tenerte a mi lado.">
+            8. El brillo de tu sonrisa
+         </button>
+      </div>
+      <div class="grid-item">
+         <button class="modal-trigger" 
+            data-title="Tu esencia y presencia" 
+            data-content="Eres un ser de luz que inspira y guía mi camino, haciendo de cada día una aventura llena de amor.">
+            9. Tu esencia y presencia
+         </button>
+      </div>
+      <div class="grid-item">
+         <button class="modal-trigger" 
+            data-title="El regalo de verte" 
+            data-content="Cada vez que te veo, se siente la emoción de una primera cita; tu presencia es un regalo diario que me llena de felicidad.">
+            10. El regalo de verte
+         </button>
+      </div>
+    </section>
+  </div>
+  
+  <!-- Modal (inicialmente oculto) -->
+  <div id="customModal" class="modal">
+    <div class="modal-content">
+       <span class="close-modal">&times;</span>
+       <h2 id="modalTitle"></h2>
+       <p id="modalText"></p>
+    </div>
+  </div>
+  
+  <script src="script.js"></script>
+</body>
+</html>
