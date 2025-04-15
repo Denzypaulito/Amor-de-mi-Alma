@@ -1,5 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+  function preloadStickers() {
+    const modalTriggers = document.querySelectorAll('.modal-trigger');
+    const loaded = new Set();
+    modalTriggers.forEach(trigger => {
+      const stickerUrl = trigger.getAttribute('data-sticker');
+      if (stickerUrl && !loaded.has(stickerUrl)) {
+        const img = new Image();
+        img.src = stickerUrl;
+        loaded.add(stickerUrl);
+      }
+    });
+  }
+  preloadStickers();
+
   function rectsOverlap(x1, y1, w1, h1, x2, y2, w2, h2) {
     return !(x1 + w1 <= x2 ||
              x2 + w2 <= x1 ||
