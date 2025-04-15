@@ -153,24 +153,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const container = document.querySelector('.bouncing-container');
   const buttons = Array.from(document.querySelectorAll('.modal-trigger'));
 
-  // Asignar posiciones y velocidades iniciales
-  const containerRect = container.getBoundingClientRect();
+    // Asignar posiciones y velocidades iniciales
+    const containerRect = container.getBoundingClientRect();
+    const constantSpeed = 0.5; // Velocidad base
   buttons.forEach(btn => {
     btn.style.position = 'absolute';
     const btnRect = btn.getBoundingClientRect();
-    // Fijar dimensiones para evitar reajuste (por contenido, etc.)
     btn.style.width = btnRect.width + 'px';
     btn.style.height = btnRect.height + 'px';
-
-    // Posición aleatoria dentro del contenedor
     const initX = Math.random() * (containerRect.width - btnRect.width);
     const initY = Math.random() * (containerRect.height - btnRect.height);
     btn.style.left = initX + 'px';
     btn.style.top = initY + 'px';
-
-    // Velocidades aleatorias (más lentas, usando factor 0.5)
-    btn.vx = (Math.random() * 2 - 1) * 0.5; // valor entre -0.5 y 0.5
-    btn.vy = (Math.random() * 2 - 1) * 0.5;
+    // Velocidades con variación mínima (por ejemplo, entre 0.5 y 0.55 o 0.5 y 0.45)
+    btn.vx = (Math.random() < 0.5 ? -1 : 1) * (constantSpeed + Math.random() * 0.05);
+    btn.vy = (Math.random() < 0.5 ? -1 : 1) * (constantSpeed + Math.random() * 0.05);
   });
 
   function updatePositions() {
