@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
         heart.innerHTML = '<img src="CorazonNegro.png" alt="Corazón negro" class="heart-image">';
         
         // Posición horizontal aleatoria
-        heart.style.left = (Math.random() * (window.innerWidth + 20) - 100) + 'px';
+        heart.style.left = (Math.random() * (window.innerWidth + 20) - 30) + 'px';
         // Como ya se está creando con un retardo, podemos dejar un pequeño retraso adicional (opcional)
         heart.style.animationDelay = (Math.random() * 0.5) + 's';
         
