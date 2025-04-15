@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const modal = document.getElementById('customModal');
   const modalTitle = document.getElementById('modalTitle');
   const modalText = document.getElementById('modalText');
+  const stickerElement = modal.querySelector('.love-sticker');
   const closeModal = document.querySelector('.close-modal');
 
   // Función para abrir el modal con los datos del botón
@@ -10,18 +11,19 @@ document.addEventListener('DOMContentLoaded', () => {
     trigger.addEventListener('click', () => {
       const title = trigger.getAttribute('data-title');
       const content = trigger.getAttribute('data-content');
+      const sticker = trigger.getAttribute('data-sticker');
 
       modalTitle.textContent = title;
       modalText.textContent = content;
+      stickerElement.src = sticker;
       
       // Mostrar el modal y reiniciar la animación
       modal.style.display = 'flex';
-      // Reiniciamos la animación quitando y reponiendo la clase (o forzando un redraw)
       const modalContent = modal.querySelector('.modal-content');
       modalContent.style.animation = 'none';
-      // Forzar reflow
+      // Forzar reflow para reiniciar la animación
       void modalContent.offsetWidth;
-      modalContent.style.animation = 'unroll 0.5s ease forwards';
+      modalContent.style.animation = 'mapOpen 0.5s ease forwards';
     });
   });
 
