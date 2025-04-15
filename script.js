@@ -1,5 +1,75 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+  function rectsOverlap(x1, y1, w1, h1, x2, y2, w2, h2) {
+    return !(x1 + w1 <= x2 ||
+             x2 + w2 <= x1 ||
+             y1 + h1 <= y2 ||
+             y2 + h2 <= y1);
+  }
+  function launchBgHearts() {
+    const bgOverlay = document.createElement('div');
+    bgOverlay.classList.add('bg-hearts-overlay');
+    document.body.appendChild(bgOverlay);
+    
+    const heartCount = 30; // Ajusta la cantidad de corazones de fondo
+    const placedHearts = []; // Array para guardar los rectángulos ya colocados
+    const maxAttempts = 10;
+  
+    for (let i = 0; i < heartCount; i++) {
+      let attempts = 0;
+      let placed = false;
+      let newX, newY, size;
+      while (!placed && attempts < maxAttempts) {
+        // Tamaño aleatorio en píxeles (puedes ajustar el rango)
+        size = 50 + Math.random() * 30; // entre 50 y 80 px
+        // Genera posición aleatoria considerando el tamaño
+        newX = Math.random() * (window.innerWidth - size);
+        newY = Math.random() * (window.innerHeight - size);
+        
+        // Comprueba solapamiento con los corazones ya colocados
+        let collides = false;
+        for (const pos of placedHearts) {
+          if (rectsOverlap(newX, newY, size, size, pos.x, pos.y, pos.width, pos.height)) {
+            collides = true;
+            break;
+          }
+        }
+        
+        if (!collides) {
+          placed = true;
+          placedHearts.push({ x: newX, y: newY, width: size, height: size });
+        }
+        attempts++;
+      }
+      // Si se superan los intentos, se usa la última posición generada
+      const bgHeart = document.createElement('img');
+      bgHeart.classList.add('bg-heart');
+      // Utiliza la imagen base del corazón (ajusta la ruta según corresponda)
+      bgHeart.src = "CorazonNegro.png"; // o "black-heart.svg" si prefieres
+      bgHeart.alt = "Corazón de fondo";
+      
+      // Aplica el tamaño (en píxeles)
+      bgHeart.style.width = size + "px";
+      bgHeart.style.height = size + "px";
+      // Asigna la posición en píxeles
+      bgHeart.style.left = newX + "px";
+      bgHeart.style.top = newY + "px";
+      
+      // Asigna aleatoriamente una variante de color: morado o menta
+      if (Math.random() < 0.5) {
+        bgHeart.classList.add("purple-heart");
+      } else {
+        bgHeart.classList.add("mint-heart");
+      }
+      
+      bgOverlay.appendChild(bgHeart);
+    }
+    // Estos corazones de fondo se mantienen de forma permanente (o puedes remover el overlay según tu diseño)
+  }
+  
+  /* Llama a la función de background hearts en tu código, por ejemplo: */
+  launchBgHearts();
+
   function launchHearts() {
     const heartOverlay = document.createElement('div');
     heartOverlay.classList.add('heart-overlay');

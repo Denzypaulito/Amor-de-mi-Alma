@@ -207,4 +207,48 @@
     height: auto;
   }
   
+  /* -----------------------------
+   Background Hearts (morados y menta)
+------------------------------ */
+.bg-hearts-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: -1; /* Quedan detrás de todo */
+    overflow: hidden;
+  }
+  
+  .bg-heart {
+    position: absolute;
+    /* Ajusta la posición vertical para que aparezcan dispersos */
+    top: 0;
+    opacity: 0.8; /* Le damos algo de transparencia para integrarse con el fondo */
+    animation: heartBeat 2s infinite ease-in-out;
+  }
+  
+  /* Filtros para obtener tonos morado y menta */
+  .purple-heart {
+    filter: invert(20%) sepia(100%) saturate(600%) hue-rotate(250deg);
+  }
+  
+  .mint-heart {
+    filter: invert(20%) sepia(100%) saturate(600%) hue-rotate(150deg);
+  }
+  
+/* Animación de latido sutil */
+@keyframes heartBeat {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+  }
+  
+  
+  
+
   
