@@ -169,4 +169,42 @@
       font-size: 1rem;
     }
   }
+
+  .heart-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9999; /* Encima de todo */
+    overflow: hidden;
+  }
+  
+  .falling-heart {
+    position: absolute;
+    bottom: -80px; /* Asegura que inicien fuera de la pantalla */
+    opacity: 1;
+    animation: heartRise linear forwards;
+  }
+  
+  /* Animación: suben de abajo hasta salir por arriba, sin desvanecerse */
+  @keyframes heartRise {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-150vh) scale(1);
+      opacity: 1;
+    }
+  }
+  
+  /* Ajuste para la imagen del corazón */
+  .heart-image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  
   

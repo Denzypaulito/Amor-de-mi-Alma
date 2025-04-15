@@ -1,5 +1,49 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // --- Funcionalidad del modal (se mantiene igual) ---
+
+  function launchHearts() {
+    const heartOverlay = document.createElement('div');
+    heartOverlay.classList.add('heart-overlay');
+    document.body.appendChild(heartOverlay);
+  
+    const heartCount = 150; // Número de corazones
+    // Calcular el lapso entre la creación de cada corazón
+    const interval = 1500 / heartCount; // en milisegundos
+  
+    for (let i = 0; i < heartCount; i++) {
+      // Cada corazón se creará con un retardo basado en su índice
+      setTimeout(() => {
+        const heart = document.createElement('span');
+        heart.classList.add('falling-heart');
+        // Usamos la imagen personalizada para un corazón negro más bonito
+        heart.innerHTML = '<img src="CorazonNegro.png" alt="Corazón negro" class="heart-image">';
+        
+        // Posición horizontal aleatoria
+        heart.style.left = Math.random() * 100 + 'vw';
+        // Como ya se está creando con un retardo, podemos dejar un pequeño retraso adicional (opcional)
+        heart.style.animationDelay = (Math.random() * 0.5) + 's';
+        
+        // Tamaño aleatorio entre 50px y 90px
+        const size = 50 + Math.random() * 40;
+        heart.style.width = size + 'px';
+        heart.style.height = size + 'px';
+        
+        // Duración de animación aleatoria entre 3 y 4 segundos
+        const duration = 3 + Math.random() * 1;
+        heart.style.animationDuration = duration + 's';
+        
+        heartOverlay.appendChild(heart);
+      }, i * interval);
+    }
+    // Elimina el overlay después de 4 segundos (3 seg para aparición más un margen extra)
+    setTimeout(() => {
+      heartOverlay.remove();
+    }, 10000);
+  }
+  
+  
+
+  launchHearts();
+  
   const modalTriggers = document.querySelectorAll('.modal-trigger');
   const modal = document.getElementById('customModal');
   const modalTitle = document.getElementById('modalTitle');
