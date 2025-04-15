@@ -49,36 +49,27 @@
     text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
   }
   
-  /* Grid para los botones */
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-  }
-  
-  /* Cada celda del grid */
-  .grid-item {
-    background-color: #D5F5E3; /* Tono mint suave */
-    border-radius: 10px;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  /* Contenedor para botones rebotantes */
+  .bouncing-container {
+    position: relative;
+    width: 100%;
+    height: 600px; /* Ajusta según necesites el espacio de movimiento */
+    border: 2px dashed transparent; /* Puedes cambiar a un color para depurar colisiones */
   }
   
   /* Botón que lanza el modal */
   .modal-trigger {
     background-color: #8E44AD; /* Morado */
     color: white;
-    border: 2px solid #F1C40F; /* Borde amarillo mostaza */
+    border: 2px solid #F1C40F; /* Borde en amarillo mostaza */
     border-radius: 5px;
     padding: 15px;
     font-size: 1.2rem;
-    width: 100%;
     cursor: pointer;
     transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
     text-align: center;
-    font-family: 'Dancing Script', cursive; 
+    font-family: 'Dancing Script', cursive;
+    position: absolute; /* Necesario para la animación de rebote */
   }
   
   .modal-trigger:hover {
@@ -114,13 +105,11 @@
     position: relative;
   }
   
-  /* Animación mapOpen: de scaleX(0) (desde el centro) a scaleX(1) */
   @keyframes mapOpen {
     0% { transform: scaleX(0); opacity: 0; }
     100% { transform: scaleX(1); opacity: 1; }
   }
   
-  /* Botón para cerrar el modal */
   .close-modal {
     position: absolute;
     top: 10px;
@@ -135,7 +124,6 @@
     color: #F1C40F;
   }
   
-  /* Título y párrafo del modal */
   .modal-content h2 {
     font-family: 'Great Vibes', cursive;
     font-size: 2.5rem;
@@ -151,15 +139,14 @@
     text-align: justify;
   }
   
-  /* Sticker animado de amor: cada modal tendrá su sticker propio */
+  /* Sticker animado de amor: se muestra debajo del contenido */
   .love-sticker {
     display: block;
     margin: 20px auto 0;
-    width: 80px; /* Ajusta el tamaño según prefieras */
+    width: 80px;
     animation: pulse 1.5s infinite;
   }
   
-  /* Animación para el sticker (efecto pulso similar a Facebook) */
   @keyframes pulse {
     0% { transform: scale(1); }
     50% { transform: scale(1.2); }
