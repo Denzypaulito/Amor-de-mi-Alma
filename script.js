@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Asignar posiciones y velocidades iniciales
     const containerRect = container.getBoundingClientRect();
-    const constantSpeed = 0.3; // Velocidad base
+    const constantSpeed = 0.1; // Velocidad base
   buttons.forEach(btn => {
     btn.style.position = 'absolute';
     const btnRect = btn.getBoundingClientRect();
